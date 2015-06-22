@@ -44,3 +44,24 @@
 	Just make sure that your back-end is sending XML or JSON. JSON is cool because you can easily manipulate this data in your presentation layer without having to hit your servers, unless you need new data.
 
 
+### COMMANDS I USED
+
+in a new tab
+	`mkdir data`
+
+	`mongod --dbpath /Users/pavankatepalli/Desktop/git/medium-node-express-mongo-app/data`
+
+in a new tab
+	`mongo`
+
+	`use nodetest2`
+
+	db.userlist.insert({'username' : 'test1','email' : 'test1@test.com','fullname' : 'Bob Smith','age' : 27,'location' : 'San Francisco','gender' : 'Male'})
+
+### NOTES
+
+http://localhost:3000/users/userlist
+	- shows the json for users
+
+http://localhost:3000
+	- shows the app
