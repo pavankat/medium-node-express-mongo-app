@@ -1,5 +1,11 @@
+# This is a JEMN STACK CRUD sample app (jQuery, Express.js, mongoDB, Node.js)
+* We'll be leveraging the ajax and dom functions that jQuery provides to make our app a single page app.
+* Express.js is the framework we'll use to handle routing, handling of parameters and rendering of HTML
+* We'll use mongoDB to store data
+* Node.js is the backend programming language we'll be using
+
 # SUMMARY
-* This is an Express, Node.js, MongoDB, AJAX/jQuery app
+* This is a Single Page CRUD App made with Express, Node.js, MongoDB, AJAX via jQuery app
 * this app will help demonstrate REST in the simplest possible way for beginners
 
 ## OBJECTIVES
@@ -8,7 +14,6 @@
 * Remove data from the collection using HTTP DELETE
 * Use AJAX for all data operations
 * Update the DOM with jQuery
-
 
 ### Learn what REST means in plain English
 
