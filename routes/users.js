@@ -61,7 +61,7 @@ var router = express.Router();
 	        res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
 	    });
 	    
-	    //worked too
+	    //worked too, but screwed up with ajax
 	    /*collection.findAndModify({_id: id}, {$set: whatToUpdateWith}, function(err) {
 	        res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
 	    });*/
