@@ -1,3 +1,10 @@
+# MOST IMPORTANT THING EVER
+
+* Installing node inspector globally
+	* sudo npm install -g node-inspector
+* In a new tab, directory, run this in the file directory: node --debug ./bin/www
+* In a new tab, run this in the file directory: node-inspector
+
 # This is a JEMN STACK CRUD sample app (jQuery, Express.js, mongoDB, Node.js)
 * We'll be leveraging the ajax and dom functions that jQuery provides to make our app a single page app.
 * Express.js is the framework we'll use to handle routing, handling of parameters and rendering of HTML

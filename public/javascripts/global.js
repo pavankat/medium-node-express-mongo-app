@@ -22,6 +22,7 @@ $(document).ready(function() {
                 tableContent += '<tr>';
                 tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '">' + this.username + '</a></td>';
                 tableContent += '<td>' + this.email + '</td>';
+                tableContent += '<td><a href="#" class="linkedituser" rel="' + this._id + '">edit</a></td>';
                 tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
                 tableContent += '</tr>';
             });
@@ -61,8 +62,6 @@ $(document).ready(function() {
         $('#userInfoAge').text(thisUserObject.age);
         $('#userInfoGender').text(thisUserObject.gender);
         $('#userInfoLocation').text(thisUserObject.location);
-
-
     }
 
     // Add User
@@ -160,6 +159,111 @@ $(document).ready(function() {
 
     };
 
+    // Edit User
+    function editUser(event) {
+        // Prevent Link from Firing
+        event.preventDefault();
+
+        // Retrieve username from link rel attribute
+        var thisUserName = $(this).parent().prev().prev().find('a').attr('rel');
+
+        // Get Index of object based on id value
+        var arrayPosition = userListData.map(function(arrayItem) { 
+            return arrayItem.username; 
+        }).indexOf(thisUserName);
+
+        // Get our User Object
+        var thisUserObject = userListData[arrayPosition];
+
+        //Populate Edit Form
+        $('#editUser fieldset input#inputUserName').val(thisUserObject.username);
+        $('#editUser fieldset input#inputUserEmail').val(thisUserObject.email);
+        $('#editUser fieldset input#inputUserFullname').val(thisUserObject.fullname);
+        $('#editUser fieldset input#inputUserAge').val(thisUserObject.age);
+        $('#editUser fieldset input#inputUserLocation').val(thisUserObject.location);
+        $('#editUser fieldset input#inputUserGender').val(thisUserObject.gender);
+
+        $('#addUserH2').addClass('hide');
+        $('#addUser').addClass('hide');
+
+        $('#editUserH2').removeClass('hide');
+        $('#editUser').removeClass('hide');
+
+        //set this as a global variable
+        //we need this to update the user in the updateUser function
+        editUserId = thisUserObject._id;
+    }
+
+    // Update User
+    function updateUser(event){
+        // Super basic validation - increase errorCount variable if any fields are blank
+        var errorCount = 0;
+        $('#editUser input').each(function(index, val) {
+            if($(this).val() === '') { errorCount++; }
+        });
+
+        // Check and make sure errorCount's still at zero
+        if(errorCount === 0) {
+
+            // If it is, compile all user info into one object
+            var editUser = {
+                'username': $('#editUser fieldset input#inputUserName').val(),
+                'email': $('#editUser fieldset input#inputUserEmail').val(),
+                'fullname': $('#editUser fieldset input#inputUserFullname').val(),
+                'age': $('#editUser fieldset input#inputUserAge').val(),
+                'location': $('#editUser fieldset input#inputUserLocation').val(),
+                'gender': $('#editUser fieldset input#inputUserGender').val()
+            }
+
+            // Use AJAX to post the object to our adduser service
+            $.ajax({
+                type: 'PUT',
+                data: editUser,
+                url: '/users/updateuser/' + editUserId, //editUserId is a global variable we set in the editUser function
+                dataType: 'JSON'
+            }).done(function( response ) {
+                
+                debugger;
+
+                // Check for successful (blank) response
+                if (response.msg === '') {
+
+                    // Clear the edit form inputs, hide the edit form and 
+                    hideAndClearEditShowAddForm();
+
+                    // Update the table
+                    populateTable();
+
+                }else {
+
+                    // If something goes wrong, alert the error message that our service returned
+                    alert('Error: ' + response.msg);
+
+                }
+            });
+        }
+        else {
+            // If errorCount is more than 0, error out
+            alert('Please fill in all fields');
+            return false;
+        }
+    }
+
+    function hideAndClearEditShowAddForm(){
+        $('#editUserH2').addClass('hide');
+        $('#editUser').addClass('hide');
+
+        $('#addUserH2').removeClass('hide');
+        $('#addUser').removeClass('hide');
+
+        $('#editUser fieldset input#inputUserName').val('');
+        $('#editUser fieldset input#inputUserEmail').val('');
+        $('#editUser fieldset input#inputUserFullname').val('');
+        $('#editUser fieldset input#inputUserAge').val('');
+        $('#editUser fieldset input#inputUserLocation').val('');
+        $('#editUser fieldset input#inputUserGender').val('');
+    }
+
     // Populate the user table on initial page load
     populateTable();
 
@@ -173,6 +277,11 @@ $(document).ready(function() {
     // Delete User link click
     $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
 
+    $('#userList table tbody').on('click', 'td a.linkedituser', editUser);
+
+    $('#btnEditUser').on('click', updateUser);
+
+    $('#btnCancelEdit').on('click', hideAndClearEditShowAddForm)
 
 
 });

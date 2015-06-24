@@ -16,6 +16,19 @@ var router = express.Router();
 	    });
 	});
 
+
+	/*
+	 * GET user.
+	 */
+	// router.get('/user', function(req, res) {
+	//     var db = req.db;
+
+	//     var user = db.products.find( { qty: { $gt: 25 } } )
+	    
+	//     res.json(user);
+
+	// });
+
 	/*
 	 * POST to adduser.
 	 */
@@ -26,6 +39,26 @@ var router = express.Router();
 	        res.send(
 	            (err === null) ? { msg: '' } : { msg: err }
 	        );
+	    });
+	});
+
+	/*
+	 * PUT to updateuser.
+	 */
+	router.put('/updateuser/:id', function(req, res) {
+		var db = req.db;
+		var collection = db.get('userlist');
+
+		var id = req.params.id;
+	    var whatToUpdateWith = req.body;
+	    delete whatToUpdateWith._id;
+
+	    process.stdout.write("-------------THE ID----------------");
+	    process.stdout.write(id);
+	    process.stdout.write("-------------THE ID----------------");
+	    
+	    collection.findAndModify({_id: id}, {$set: whatToUpdateWith}, function(err) {
+	        res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
 	    });
 	});
 
