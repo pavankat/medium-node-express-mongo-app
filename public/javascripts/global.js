@@ -223,8 +223,6 @@ $(document).ready(function() {
                 dataType: 'JSON'
             }).done(function( response ) {
                 
-                debugger;
-
                 // Check for successful (blank) response
                 if (response.msg === '') {
 

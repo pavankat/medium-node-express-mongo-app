@@ -8,7 +8,7 @@
 # This is a JEMN STACK CRUD sample app (jQuery, Express.js, mongoDB, Node.js)
 * We'll be leveraging the ajax and dom functions that jQuery provides to make our app a single page app.
 * Express.js is the framework we'll use to handle routing, handling of parameters and rendering of HTML
-* We'll use mongoDB to store data
+* We'll use mongoDB to store data and we'll use monk as the ORM (object relational mapper) to mongoDB. Monk will make communicating to mongoDB easier for us.
 * Node.js is the backend programming language we'll be using
 
 # SUMMARY

@@ -16,18 +16,19 @@ var router = express.Router();
 	    });
 	});
 
-
 	/*
 	 * GET user.
 	 */
-	// router.get('/user', function(req, res) {
-	//     var db = req.db;
+	router.get('/user/:id', function(req, res) {
+	    var db = req.db;
+	    var collection = db.get('userlist');
+	    var id = req.params.id;
 
-	//     var user = db.products.find( { qty: { $gt: 25 } } )
+	    user = collection.findById(id, function(err, doc){});
 	    
-	//     res.json(user);
+	    res.json(user);
 
-	// });
+	});
 
 	/*
 	 * POST to adduser.
@@ -53,6 +54,7 @@ var router = express.Router();
 	    var whatToUpdateWith = req.body;
 	    delete whatToUpdateWith._id;
 
+	    //how to print to the console
 	    process.stdout.write("-------------THE ID----------------");
 	    process.stdout.write(id);
 	    process.stdout.write("-------------THE ID----------------");
