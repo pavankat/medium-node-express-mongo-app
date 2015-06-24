@@ -56,10 +56,15 @@ var router = express.Router();
 	    process.stdout.write("-------------THE ID----------------");
 	    process.stdout.write(id);
 	    process.stdout.write("-------------THE ID----------------");
-	    
-	    collection.findAndModify({_id: id}, {$set: whatToUpdateWith}, function(err) {
+
+	    collection.updateById(id, whatToUpdateWith, function(err) {
 	        res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
 	    });
+	    
+	    //worked too
+	    /*collection.findAndModify({_id: id}, {$set: whatToUpdateWith}, function(err) {
+	        res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
+	    });*/
 	});
 
 	/*
