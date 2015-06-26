@@ -1,14 +1,15 @@
 # This is a MEAN STACK CRUD sample app (mongoDB, Express.js, Angular.js, Node.js)
+* this is a single page fried chicken spot logger app. 
 
-* if you want to see how to accomplish this with a JEMN stack (jQuery, Express.js, mongoDB and Node.js, then check out the other branch for this repository)
+* we're using a MEAN stack, however, if you want to start off with something lighter then	
+	* you can see how to accomplish doing this with a JEMN stack (jQuery, Express.js, mongoDB and Node.js by going to the other branch of this repository)
 
 * We'll be leveraging Angular.js to make our app a single page app.
 * Express.js is the framework we'll use to handle routing, handling of parameters and rendering of HTML
 * We'll use mongoDB to store data and we'll use mongoose as the ORM (object relational mapper) to mongoDB. Mongoose will make communicating to mongoDB easier for us.
 * Node.js is the backend programming language we'll be using
 
-# SUMMARY
-* This is a Single Page CRUD App made with MongoDB, Angular.js, Express, Node.js, 
+# GOAL
 * this app will help demonstrate REST in the simplest possible way for beginners
 
 ## OBJECTIVES
@@ -20,13 +21,19 @@
 
 ### Learn what REST means in plain English
 
-* Use HTTP methods explicitly.
-* Be stateless.
-* Expose directory structure-like URIs.
-* Transfer XML, JavaScript Object Notation (JSON), or both.
+* EASY EXPLANATION
+	* if you Want you can skip all the shit below, and just understand this in the context of a web app that let's you log fried chicken restaurants (what this app does) 
+
+		* REST means you have 4 types of URLs for a fried chicken spot: create a fried chicken spot (A POST ROUTE), read a fried a chicken spot (A GET ROUTE), update a fried chicken spot (A PUT ROUTE) and delete a fried chicken spot (A DELETE ROUTE).
+
+* HARD EXPLANATION (with theory)
+	* Use HTTP methods explicitly.
+	* Be stateless.
+	* Expose directory structure-like URIs.
+	* Transfer XML, JavaScript Object Notation (JSON), or both.
 
 #### Use HTTP methods explicitly.
-	To retrieve data, you use GET. To create data, you use POST. To update or change data, you use PUT (not used in this app). To delete data you use DELETE.
+	To retrieve data, you use GET. To create data, you use POST. To update or change data, you use PUT. To delete data you use DELETE.
 
 	So for example, this once-common approach is not a good one:
 
@@ -52,14 +59,14 @@
 	Just make sure that your back-end is sending XML or JSON. JSON is cool because you can easily manipulate this data in your presentation layer without having to hit your servers, unless you need new data.
 
 
-### COMMANDS I USED
+### COMMANDS I USED WHEN STARTING THE APP
 
-in a new tab
+in a new tab:
 	`mkdir data`
 
 	`mongod --dbpath /Users/pavankatepalli/Desktop/git/medium-node-express-mongo-app/data`
 
-in a new tab
+in a new tab I can make a fried chicken spot initially doing this:
 	`mongo`
 
 	`use nodetest2`
