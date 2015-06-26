@@ -77,19 +77,21 @@ in a new tab
 * http://localhost:3000
 	- shows the app
 
-* Installing node inspector globally
-	* sudo npm install -g node-inspector
-* In a new tab, directory, run this in the file directory: node --debug ./bin/www
-* In a new tab, run this in the file directory: node-inspector
+* Debugging
+	* Installing node inspector globally
+		* sudo npm install -g node-inspector
+	* In a new tab, directory, run this in the file directory: node --debug ./bin/www
+	* In a new tab, run this in the file directory: node-inspector
 
-* couldn't get any of this to work in execution
-	* node debug app.js
+	* Alternative way of debugging
+		* couldn't get any of this to work in execution
+			* node debug app.js
 
-	* then use debugger;
+			* then use debugger;
 
-	* then 
-		* cont, c - Continue execution
-		* next, n - Step next
-		* step, s - Step in
-		* out, o - Step out
-		* pause - Pause running code (like pause button in Developer Tools)
+			* then 
+				* cont, c - Continue execution
+				* next, n - Step next
+				* step, s - Step in
+				* out, o - Step out
+				* pause - Pause running code (like pause button in Developer Tools)
