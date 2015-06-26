@@ -1,74 +1,64 @@
 extends layout
 
 block content
-    h1= title
-    p Welcome to our test
+    h1 Fried Chicken Spots Bro
+    p Welcome to the fried chicken spot finder bro
 
     // Wrapper
     #wrapper
 
-        // USER LIST
-        h2 User List
-        #userList
+        // FRIED CHICKEN LIST
+        h2 Fried Chicken Spots
+        #friedChickenList
             table
                 thead
-                    th UserName
-                    th Email
+                    th Restaurant Name
+                    th Address
+                    th Website
                     th Edit
                     th Delete?
                 tbody
-        // /USER LIST
+        // /FRIED CHICKEN LIST
 
-        // USER INFO
-        #userInfo
-            h2 User Info
+        // FRIED CHICKEN SPOT INFO
+        #friedChickenInfo
+            h2 Chicken Spot Info
             p
-                strong Name:
-                |  <span id='userInfoName'></span>
+                strong Restaurant Name:
+                |  <span id='restaurantName'></span>
                 br
-                strong Age:
-                |  <span id='userInfoAge'></span>
+                strong Address:
+                |  <span id='address'></span>
                 br
-                strong Gender:
-                |  <span id='userInfoGender'></span>
-                br
-                strong Location:
-                |  <span id='userInfoLocation'></span>
-        // /USER INFO
+                strong Website:
+                |  <span id='website'></span>
+        // /FRIED CHICKEN SPOT INFO
 
 
-        // ADD USER
-        h2#addUserH2 Add User
-        #addUser
+        // ADD FRIED CHICKEN SPOT
+        h2#addSpotH2 Add Fried Chicken Spot
+        #addSpot
             fieldset
-                input#inputUserName(type='text', placeholder='Username')
-                input#inputUserEmail(type='text', placeholder='Email')
+                input#inputRestaurantName(type='text', placeholder='Restaurant Name')
+                input#inputAddress(type='text', placeholder='Address')
                 br
-                input#inputUserFullname(type='text', placeholder='Full Name')
-                input#inputUserAge(type='text', placeholder='Age')
+                input#inputWebsite(type='text', placeholder='Website')
                 br
-                input#inputUserLocation(type='text', placeholder='Location')
-                input#inputUserGender(type='text', placeholder='gender')
-                br
-                button#btnAddUser Add User
-        // /ADD USER
+                button#btnAddChickenSpot ADD FRIED CHICKEN SPOT
+        // /ADD FRIED CHICKEN SPOT
 
-        // EDIT USER
-        h2#editUserH2.hide Edit User
-        #editUser.hide
+        // EDIT FRIED CHICKEN SPOT
+        h2#editSpotH2.hide Edit Fried Chicken Spot
+        #editFriedChicken.hide
             fieldset
-                input#inputUserName(type='text', placeholder='Username')
-                input#inputUserEmail(type='text', placeholder='Email')
+                input#inputRestaurantName(type='text', placeholder='Restaurant Name')
+                input#inputAddress(type='text', placeholder='Address')
                 br
-                input#inputUserFullname(type='text', placeholder='Full Name')
-                input#inputUserAge(type='text', placeholder='Age')
+                input#inputWebsite(type='text', placeholder='Website')
                 br
-                input#inputUserLocation(type='text', placeholder='Location')
-                input#inputUserGender(type='text', placeholder='gender')
-                br
-                button#btnEditUser Update User
+                button#btnEditChickenSpot UPDATE THAT CHICKEN SPOT BRO
                 button#btnCancelEdit Cancel Edit
-        // /EDIT USER
+        // /EDIT FRIED CHICKEN SPOT
 
 
 

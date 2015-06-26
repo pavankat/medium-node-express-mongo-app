@@ -20,37 +20,38 @@ a {
 	position:relative;
 }
 
-#userList {
+#friedChickenList {
 	margin:0 0 30px 0;
 }
-	#userList table {
+	#friedChickenList table {
 		border-collapse:separate;
 		border-spacing:1px;
 		background:#CCC;
 	}
-		#userList table th {
+		#friedChickenList table th {
 			background:#EEE;
 			font-weight:600;
 			padding:10px 20px;
 			text-align:center;
 		}
-		#userList table tbody {
+		#friedChickenList table tbody {
 			padding:0; margin:0;
 			border-collapse:collapse;
 			border-spacing:0px;
 		}
-			#userList table td {
+			#friedChickenList table td {
 				background:#FFF;
 				padding:5px 10px;
 				text-align:center;
 			}
 
-#userInfo {
+#friedChickenInfo {
 	width:250px;
 	position:absolute;
 	top:0; left:0;
+	display: none;
 }
-	#userInfo p {
+	#friedChickenInfo p {
 		padding:15px;
 		border:1px solid #CCC;
 		background:rgba(80,120,255,0.05);
@@ -60,5 +61,3 @@ fieldset {
 	border:0;
 	padding:0; margin:0;
 }
-
-

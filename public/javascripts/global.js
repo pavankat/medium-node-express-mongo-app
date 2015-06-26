@@ -1,8 +1,8 @@
 // DOM Ready =============================================================
 $(document).ready(function() {
 
-    // Userlist data array for filling in info box
-    var userListData = [];
+    // friedChickenList data array for filling in info box
+    var friedChickenListData = [];
 
     // Fill table with data
     function populateTable() {
@@ -11,66 +11,57 @@ $(document).ready(function() {
         var tableContent = '';
 
         // jQuery AJAX call for JSON
-        $.getJSON( '/users/userlist', function( data ) {
+        $.getJSON( '/chickenspots/friedchickenlist', function( data ) {
 
-            // Stick our user data array into a userlist variable in the global object
-            // For large apps, this is a bad idea, there should be a limit of users that get displayed and pagination built in
-            userListData = data;
+            // Stick our chickenspots data array into a friedChickenList variable in the global object
+            // For large apps, this is a bad idea, there should be a limit of chicken spots that get displayed and pagination built in
+            friedChickenListData = data;
 
             // For each item in our JSON, add a table row and cells to the content string
             $.each(data, function(){
                 tableContent += '<tr>';
-                tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '">' + this.username + '</a></td>';
-                tableContent += '<td>' + this.email + '</td>';
-                tableContent += '<td><a href="#" class="linkedituser" rel="' + this._id + '">edit</a></td>';
-                tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
+                tableContent += '<td><a href="#" class="linkshowspot" rel="' + this._id + '">' + this.restaurantname + '</a></td>';
+                tableContent += '<td>' + this.address + '</td>';
+                tableContent += '<td>' + this.website + '</td>';
+                tableContent += '<td><a href="#" class="linkeditspot" rel="' + this._id + '">edit</a></td>';
+                tableContent += '<td><a href="#" class="linkdeletespot" rel="' + this._id + '">delete</a></td>';
                 tableContent += '</tr>';
             });
 
             // Inject the whole content string into our existing HTML table
-            $('#userList table tbody').html(tableContent);
+            $('#friedChickenList table tbody').html(tableContent);
         });
     };
 
-    // Show User Info
-    function showUserInfo(event) {
-
-        // First we're using .map to apply a function to each object in our userListData array. This will spit out a brand new array containing only whatever the function returns. 
-
-        // That function (the anonymous callback function using the userObj parameter) strictly returns the username. So, basically, if our original data array contained two complete user objects, then the array returned by our use of .map here would only contain usernames, and look like this: ['Bob', 'Sue'].
-
-        // So once we have THAT array, provided by .map, we're chaining indexOf, in combination with the username of our choice, to get the array index of that username. So Bob would be zero, and Sue would be one. 
-
-        // We can then use that number, stored as arrayPosition, to go back to our original user data array and start pulling data, in the following code.
+    // Show Spot Info
+    function showSpotInfo(event) {
 
         // Prevent Link from Firing
         event.preventDefault();
 
-        // Retrieve username from link rel attribute
-        var thisUserName = $(this).attr('rel');
+        // Retrieve the id from the link rel attribute
+        var thisId = $(this).attr('rel');
 
-        // Get Index of object based on id value
-        var arrayPosition = userListData.map(function(arrayItem) { 
-            return arrayItem.username; 
-        }).indexOf(thisUserName);
+        $.getJSON('/chickenspots/friedchickenspot/' + thisId).done(function(data) {
+            // Get our Fried Chicken Spot Object
+            var thisRestaurantObject = data;
 
-        // Get our User Object
-        var thisUserObject = userListData[arrayPosition];
+            //Populate Info Box
+            $('#restaurantName').text(thisRestaurantObject.restaurantname);
+            $('#address').text(thisRestaurantObject.address);
+            $('#website').text(thisRestaurantObject.website);
 
-        //Populate Info Box
-        $('#userInfoName').text(thisUserObject.fullname);
-        $('#userInfoAge').text(thisUserObject.age);
-        $('#userInfoGender').text(thisUserObject.gender);
-        $('#userInfoLocation').text(thisUserObject.location);
+            $('#friedChickenInfo').css('display', 'inline');
+         })
     }
 
-    // Add User
-    function addUser(event) {
+    // Add Spot
+    function addSpot(event) {
         event.preventDefault();
 
         // Super basic validation - increase errorCount variable if any fields are blank
         var errorCount = 0;
-        $('#addUser input').each(function(index, val) {
+        $('#addSpot input').each(function(index, val) {
             if($(this).val() === '') { errorCount++; }
         });
 
@@ -78,20 +69,17 @@ $(document).ready(function() {
         if(errorCount === 0) {
 
             // If it is, compile all user info into one object
-            var newUser = {
-                'username': $('#addUser fieldset input#inputUserName').val(),
-                'email': $('#addUser fieldset input#inputUserEmail').val(),
-                'fullname': $('#addUser fieldset input#inputUserFullname').val(),
-                'age': $('#addUser fieldset input#inputUserAge').val(),
-                'location': $('#addUser fieldset input#inputUserLocation').val(),
-                'gender': $('#addUser fieldset input#inputUserGender').val()
+            var newSpot = {
+                'restaurantname': $('#addSpot fieldset input#inputRestaurantName').val(),
+                'address': $('#addSpot fieldset input#inputAddress').val(),
+                'website': $('#addSpot fieldset input#inputWebsite').val()
             }
 
             // Use AJAX to post the object to our adduser service
             $.ajax({
                 type: 'POST',
-                data: newUser,
-                url: '/users/adduser',
+                data: newSpot,
+                url: '/chickenspots/addspot',
                 dataType: 'JSON'
             }).done(function( response ) {
 
@@ -99,7 +87,7 @@ $(document).ready(function() {
                 if (response.msg === '') {
 
                     // Clear the form inputs
-                    $('#addUser fieldset input').val('');
+                    $('#addSpot fieldset input').val('');
 
                     // Update the table
                     populateTable();
@@ -120,21 +108,21 @@ $(document).ready(function() {
         }
     };
 
-    // Delete User
-    function deleteUser(event) {
+    // Delete Spot
+    function deleteSpot(event) {
 
         event.preventDefault();
 
         // Pop up a confirmation dialog
-        var confirmation = confirm('Are you sure you want to delete this user?');
+        var confirmation = confirm('Are you sure you want to delete this spot?');
 
-        // Check and make sure the user confirmed
+        // Check and make sure they really want to delete
         if (confirmation === true) {
 
             // If they did, do our delete
             $.ajax({
                 type: 'DELETE',
-                url: '/users/deleteuser/' + $(this).attr('rel')
+                url: '/chickenspots/deletespot/' + $(this).attr('rel')
             }).done(function( response ) {
 
                 // Check for a successful (blank) response
@@ -159,67 +147,61 @@ $(document).ready(function() {
 
     };
 
-    // Edit User
-    function editUser(event) {
+    
+
+    // Edit Spot
+    function editSpot(event) {
+
         // Prevent Link from Firing
         event.preventDefault();
 
-        // Retrieve username from link rel attribute
-        var thisUserName = $(this).parent().prev().prev().find('a').attr('rel');
+        // Retrieve the id from the link rel attribute
+        var thisId = $(this).attr('rel');
 
-        // Get Index of object based on id value
-        var arrayPosition = userListData.map(function(arrayItem) { 
-            return arrayItem.username; 
-        }).indexOf(thisUserName);
+        // Get our Fried Chicken Spot Object
+        $.getJSON('/chickenspots/friedchickenspot/' + thisId).done(function(data) {
+            var thisRestaurantObject = data;
 
-        // Get our User Object
-        var thisUserObject = userListData[arrayPosition];
+            //Populate Edit Form
+            $('#editFriedChicken fieldset input#inputRestaurantName').val(thisRestaurantObject.restaurantname);
+            $('#editFriedChicken fieldset input#inputAddress').val(thisRestaurantObject.address);
+            $('#editFriedChicken fieldset input#inputWebsite').val(thisRestaurantObject.website);
+            
+            $('#addSpotH2').addClass('hide');
+            $('#addSpot').addClass('hide');
 
-        //Populate Edit Form
-        $('#editUser fieldset input#inputUserName').val(thisUserObject.username);
-        $('#editUser fieldset input#inputUserEmail').val(thisUserObject.email);
-        $('#editUser fieldset input#inputUserFullname').val(thisUserObject.fullname);
-        $('#editUser fieldset input#inputUserAge').val(thisUserObject.age);
-        $('#editUser fieldset input#inputUserLocation').val(thisUserObject.location);
-        $('#editUser fieldset input#inputUserGender').val(thisUserObject.gender);
+            $('#editSpotH2').removeClass('hide');
+            $('#editFriedChicken').removeClass('hide');
 
-        $('#addUserH2').addClass('hide');
-        $('#addUser').addClass('hide');
-
-        $('#editUserH2').removeClass('hide');
-        $('#editUser').removeClass('hide');
-
-        //set this as a global variable
-        //we need this to update the user in the updateUser function
-        editUserId = thisUserObject._id;
+            //set this as a global variable
+            //we need this to update the user in the updateSpot function
+            editFriedChickenId = thisRestaurantObject._id;
+         })
     }
 
-    // Update User
-    function updateUser(event){
+    // Update Spot
+    function updateSpot(event){
         // Super basic validation - increase errorCount variable if any fields are blank
         var errorCount = 0;
-        $('#editUser input').each(function(index, val) {
+        $('#editFriedChicken input').each(function(index, val) {
             if($(this).val() === '') { errorCount++; }
         });
 
         // Check and make sure errorCount's still at zero
         if(errorCount === 0) {
 
-            // If it is, compile all user info into one object
-            var editUser = {
-                'username': $('#editUser fieldset input#inputUserName').val(),
-                'email': $('#editUser fieldset input#inputUserEmail').val(),
-                'fullname': $('#editUser fieldset input#inputUserFullname').val(),
-                'age': $('#editUser fieldset input#inputUserAge').val(),
-                'location': $('#editUser fieldset input#inputUserLocation').val(),
-                'gender': $('#editUser fieldset input#inputUserGender').val()
+            // If it is, compile all spot info into one object
+            var editSpot = {
+                'restaurantname': $('#editFriedChicken fieldset input#inputRestaurantName').val(),
+                'address': $('#editFriedChicken fieldset input#inputAddress').val(),
+                'website': $('#editFriedChicken fieldset input#inputWebsite').val()
             }
 
             // Use AJAX to post the object to our adduser service
             $.ajax({
                 type: 'PUT',
-                data: editUser,
-                url: '/users/updateuser/' + editUserId, //editUserId is a global variable we set in the editUser function
+                data: editSpot,
+                url: '/chickenspots/updatefriedchicken/' + editFriedChickenId, //editFriedChickenId is a global variable we set in the editUser function
                 dataType: 'JSON'
             }).done(function( response ) {
                 
@@ -248,36 +230,33 @@ $(document).ready(function() {
     }
 
     function hideAndClearEditShowAddForm(){
-        $('#editUserH2').addClass('hide');
-        $('#editUser').addClass('hide');
+        $('#editSpotH2').addClass('hide');
+        $('#editFriedChicken').addClass('hide');
 
-        $('#addUserH2').removeClass('hide');
-        $('#addUser').removeClass('hide');
+        $('#addSpotH2').removeClass('hide');
+        $('#addSpot').removeClass('hide');
 
-        $('#editUser fieldset input#inputUserName').val('');
-        $('#editUser fieldset input#inputUserEmail').val('');
-        $('#editUser fieldset input#inputUserFullname').val('');
-        $('#editUser fieldset input#inputUserAge').val('');
-        $('#editUser fieldset input#inputUserLocation').val('');
-        $('#editUser fieldset input#inputUserGender').val('');
+        $('#editFriedChicken fieldset input#inputRestaurantName').val('');
+        $('#editFriedChicken fieldset input#inputAddress').val('');
+        $('#editFriedChicken fieldset input#inputWebsite').val('');
     }
 
     // Populate the user table on initial page load
     populateTable();
 
     // Username link click
-    $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
+    $('#friedChickenList table tbody').on('click', 'td a.linkshowspot', showSpotInfo);
 
     // Add User button click
-    $('#btnAddUser').on('click', addUser);
+    $('#btnAddChickenSpot').on('click', addSpot);
 
 
     // Delete User link click
-    $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
+    $('#friedChickenList table tbody').on('click', 'td a.linkdeletespot', deleteSpot);
 
-    $('#userList table tbody').on('click', 'td a.linkedituser', editUser);
+    $('#friedChickenList table tbody').on('click', 'td a.linkeditspot', editSpot);
 
-    $('#btnEditUser').on('click', updateUser);
+    $('#btnEditChickenSpot').on('click', updateSpot);
 
     $('#btnCancelEdit').on('click', hideAndClearEditShowAddForm)
 
