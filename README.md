@@ -83,12 +83,15 @@ in a new tab
 
 	`use nodetest2`
 
-	db.friedChickenList.insert({'username' : 'test1','email' : 'test1@test.com','fullname' : 'Bob Smith','age' : 27,'location' : 'San Francisco','gender' : 'Male'})
+	db.friedChickenList.insert({'restaurantname' : 'Thunder Fried Chicken','address' : '194 23rd Street New York, New York','website' : 'www.thunderfriedchicken-willblow-you-away.com'})
+
+	db.friedChickenList.find().pretty()
+		- prints out the fried chicken spot results all pretty like
 
 ### NOTES
 
-http://localhost:3000/users/friedChickenList
-	- shows the json for users
+http://localhost:3000/chickenspots/friedChickenList
+	- shows the json for fried chicken spots
 
 http://localhost:3000
 	- shows the app
