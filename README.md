@@ -1,25 +1,7 @@
-# MOST IMPORTANT THING EVER - debugging a node app
-
-* Installing node inspector globally
-	* sudo npm install -g node-inspector
-* In a new tab, directory, run this in the file directory: node --debug ./bin/www
-* In a new tab, run this in the file directory: node-inspector
-
-##OR 
-
-* couldn't get any of this to work in execution
-	* node debug app.js
-
-	* then use debugger;
-
-	* then 
-		* cont, c - Continue execution
-		* next, n - Step next
-		* step, s - Step in
-		* out, o - Step out
-		* pause - Pause running code (like pause button in Developer Tools)
-
 # This is a MEAN STACK CRUD sample app (mongoDB, Express.js, Angular.js, Node.js)
+
+* if you want to see how to accomplish this with a JEMN stack (jQuery, Express.js, mongoDB and Node.js, then check out the other branch for this repository)
+
 * We'll be leveraging Angular.js to make our app a single page app.
 * Express.js is the framework we'll use to handle routing, handling of parameters and rendering of HTML
 * We'll use mongoDB to store data and we'll use mongoose as the ORM (object relational mapper) to mongoDB. Mongoose will make communicating to mongoDB easier for us.
@@ -89,8 +71,25 @@ in a new tab
 
 ### NOTES
 
-http://localhost:3000/chickenspots/friedChickenList
+* http://localhost:3000/chickenspots/friedChickenList
 	- shows the json for fried chicken spots
 
-http://localhost:3000
+* http://localhost:3000
 	- shows the app
+
+* Installing node inspector globally
+	* sudo npm install -g node-inspector
+* In a new tab, directory, run this in the file directory: node --debug ./bin/www
+* In a new tab, run this in the file directory: node-inspector
+
+* couldn't get any of this to work in execution
+	* node debug app.js
+
+	* then use debugger;
+
+	* then 
+		* cont, c - Continue execution
+		* next, n - Step next
+		* step, s - Step in
+		* out, o - Step out
+		* pause - Pause running code (like pause button in Developer Tools)
