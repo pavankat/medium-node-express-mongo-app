@@ -5,8 +5,7 @@
 	* https://github.com/Automattic/monk
 * Node.js is the backend programming language we'll be using
 
-# SUMMARY
-* This is a Single Page CRUD App made with Express, Node.js, MongoDB, AJAX via jQuery app
+# GOAL
 * this app will help demonstrate REST in the simplest possible way for beginners
 
 ## OBJECTIVES
@@ -14,17 +13,23 @@
 * Store and retrieve JSON data in a MongoDB collection using HTTP POST and HTTP GET
 * Remove data from the collection using HTTP DELETE
 * Use AJAX for all data operations
-* Update the DOM with jQuery
+* Update the DOM with Angular.js
 
 ### Learn what REST means in plain English
 
-* Use HTTP methods explicitly.
-* Be stateless.
-* Expose directory structure-like URIs.
-* Transfer XML, JavaScript Object Notation (JSON), or both.
+* EASY EXPLANATION
+	* if you Want you can skip all the shit below, and just understand this in the context of a web app that let's you log fried chicken restaurants (what this app does) 
+
+		* REST means you have 4 types of URLs for a fried chicken spot: create a fried chicken spot (A POST ROUTE), read a fried a chicken spot (A GET ROUTE), update a fried chicken spot (A PUT ROUTE) and delete a fried chicken spot (A DELETE ROUTE).
+
+* HARD EXPLANATION (with theory)
+	* Use HTTP methods explicitly.
+	* Be stateless.
+	* Expose directory structure-like URIs.
+	* Transfer XML, JavaScript Object Notation (JSON), or both.
 
 #### Use HTTP methods explicitly.
-	To retrieve data, you use GET. To create data, you use POST. To update or change data, you use PUT (not used in this app). To delete data you use DELETE.
+	To retrieve data, you use GET. To create data, you use POST. To update or change data, you use PUT. To delete data you use DELETE.
 
 	So for example, this once-common approach is not a good one:
 
