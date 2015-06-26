@@ -1,24 +1,3 @@
-# MOST IMPORTANT THING EVER - debugging a node app
-
-* Installing node inspector globally
-	* sudo npm install -g node-inspector
-* In a new tab, directory, run this in the file directory: node --debug ./bin/www
-* In a new tab, run this in the file directory: node-inspector
-
-##OR 
-
-* couldn't get any of this to work in execution
-	* node debug app.js
-
-	* then use debugger;
-
-	* then 
-		* cont, c - Continue execution
-		* next, n - Step next
-		* step, s - Step in
-		* out, o - Step out
-		* pause - Pause running code (like pause button in Developer Tools)
-
 # This is a JEMN STACK CRUD sample app (jQuery, Express.js, mongoDB, Node.js)
 * We'll be leveraging the ajax and dom functions that jQuery provides to make our app a single page app.
 * Express.js is the framework we'll use to handle routing, handling of parameters and rendering of HTML
@@ -90,8 +69,27 @@ in a new tab
 
 ### NOTES
 
-http://localhost:3000/chickenspots/friedChickenList
+* http://localhost:3000/chickenspots/friedChickenList
 	- shows the json for fried chicken spots
 
-http://localhost:3000
+* http://localhost:3000
 	- shows the app
+
+* Debugging
+	* Installing node inspector globally
+		* sudo npm install -g node-inspector
+	* In a new tab, directory, run this in the file directory: node --debug ./bin/www
+	* In a new tab, run this in the file directory: node-inspector
+
+	* Alternative way of debugging
+		* couldn't get any of this to work in execution
+			* node debug app.js
+
+			* then use debugger;
+
+			* then 
+				* cont, c - Continue execution
+				* next, n - Step next
+				* step, s - Step in
+				* out, o - Step out
+				* pause - Pause running code (like pause button in Developer Tools)
