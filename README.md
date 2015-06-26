@@ -19,15 +19,14 @@
 		* out, o - Step out
 		* pause - Pause running code (like pause button in Developer Tools)
 
-# This is a JEMN STACK CRUD sample app (jQuery, Express.js, mongoDB, Node.js)
-* We'll be leveraging the ajax and dom functions that jQuery provides to make our app a single page app.
+# This is a MEAN STACK CRUD sample app (mongoDB, Express.js, Angular.js, Node.js)
+* We'll be leveraging Angular.js to make our app a single page app.
 * Express.js is the framework we'll use to handle routing, handling of parameters and rendering of HTML
-* We'll use mongoDB to store data and we'll use monk as the ORM (object relational mapper) to mongoDB. Monk will make communicating to mongoDB easier for us.
-	* https://github.com/Automattic/monk
+* We'll use mongoDB to store data and we'll use mongoose as the ORM (object relational mapper) to mongoDB. Mongoose will make communicating to mongoDB easier for us.
 * Node.js is the backend programming language we'll be using
 
 # SUMMARY
-* This is a Single Page CRUD App made with Express, Node.js, MongoDB, AJAX via jQuery app
+* This is a Single Page CRUD App made with MongoDB, Angular.js, Express, Node.js, 
 * this app will help demonstrate REST in the simplest possible way for beginners
 
 ## OBJECTIVES
@@ -83,12 +82,15 @@ in a new tab
 
 	`use nodetest2`
 
-	db.friedChickenList.insert({'username' : 'test1','email' : 'test1@test.com','fullname' : 'Bob Smith','age' : 27,'location' : 'San Francisco','gender' : 'Male'})
+	db.friedChickenList.insert({'restaurantname' : 'Thunder Fried Chicken','address' : '194 23rd Street New York, New York','website' : 'www.thunderfriedchicken-willblow-you-away.com'})
+
+	db.friedChickenList.find().pretty()
+		- prints out the fried chicken spot results all pretty like
 
 ### NOTES
 
-http://localhost:3000/users/friedChickenList
-	- shows the json for users
+http://localhost:3000/chickenspots/friedChickenList
+	- shows the json for fried chicken spots
 
 http://localhost:3000
 	- shows the app
