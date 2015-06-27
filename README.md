@@ -5,6 +5,8 @@
 	* https://github.com/Automattic/monk
 * Node.js is the backend programming language we'll be using
 
+* We'll use jade to render the views even though it fucking sucks. I used it so I can really understand how much it fucking sucks, so the next time I see someone using it, I can tell them to go fuck themselves in a very specific way.
+
 # GOAL
 * this app will help demonstrate REST in the simplest possible way for beginners
 
