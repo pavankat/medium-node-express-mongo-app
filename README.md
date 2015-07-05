@@ -1,3 +1,9 @@
+http://stackoverflow.com/questions/7666977/syntax-highlighting-for-jade-in-sublime-text-2
+
+https://scotch.io/tutorials/setting-up-a-mean-stack-single-page-application
+
+http://mongoosejs.com/docs/
+
 # This is a MEAN STACK CRUD sample app (mongoDB, Express.js, Angular.js, Node.js)
 * this is a single page fried chicken spot logger app. 
 
@@ -9,7 +15,7 @@
 * We'll use mongoDB to store data and we'll use mongoose as the ORM (object relational mapper) to mongoDB. Mongoose will make communicating to mongoDB easier for us.
 * Node.js is the backend programming language we'll be using
 
-* We'll use jade to render the views even though it fucking sucks. I used it so I can really understand how much it fucking sucks, so the next time I see someone using it, I can tell them to go fuck themselves in a very specific way.
+* We'll use jade to render the views even though it sucks.
 
 # GOAL
 * this app will help demonstrate REST in the simplest possible way for beginners
@@ -96,6 +102,16 @@ in a new tab I can make a fried chicken spot initially doing this:
 		* couldn't get any of this to work in execution
 			* node debug app.js
 
+			* run
+			 or
+			* r
+
+			- when you hit the script in browser then
+				- it'll pause
+				- you use this 
+					* repel
+				- to be able to see what the variables are
+
 			* then use debugger;
 
 			* then 
@@ -104,3 +120,4 @@ in a new tab I can make a fried chicken spot initially doing this:
 				* step, s - Step in
 				* out, o - Step out
 				* pause - Pause running code (like pause button in Developer Tools)
+
