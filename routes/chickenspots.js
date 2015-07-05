@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+var ChickenSpot = mongoose.model('ChickenSpot')
 
 //Pavan added this:
 	/*
@@ -9,11 +11,16 @@ var router = express.Router();
 	 * GET friedChickenList.
 	 */
 	router.get('/friedchickenlist', function(req, res) {
-	    var db = req.db;
-	    var collection = db.get('friedChickenList');
-	    collection.find({},{},function(e,docs){
-	        res.json(docs);
-	    });
+    	console.log("GET - /tshirts");
+        return ChickenSpot.find(function(err, spots) {
+          if(!err) {
+            return res.send(spots);
+          } else {
+            res.statusCode = 500;
+            console.log('Internal error(%d): %s',res.statusCode,err.message);
+            return res.send({ error: 'Server error' });
+          }
+        });
 	});
 
 	/*
