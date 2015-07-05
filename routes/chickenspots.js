@@ -3,15 +3,10 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var ChickenSpot = mongoose.model('ChickenSpot')
 
-//Pavan added this:
-	/*
-		The purpose of this code is: if you do an HTTP GET to /chickenspots/friedChickenList, our server will return JSON that lists all of the chickenspots in the database. Obviously for a large-scale project you'd want to put in limits as to how much data gets spewed out at one time, for example by adding pagination to your front-end, but for our purposes this is fine. 
-	*/
 	/*
 	 * GET friedChickenList.
 	 */
 	router.get('/friedchickenlist', function(req, res) {
-    	console.log("GET - /tshirts");
         return ChickenSpot.find(function(err, spots) {
           if(!err) {
             return res.send(spots);
@@ -27,13 +22,12 @@ var ChickenSpot = mongoose.model('ChickenSpot')
 	 * GET the fried chicken spot.
 	 */
 	router.get('/friedchickenspot/:id', function(req, res) {
-	    var db = req.db;
-	    var collection = db.get('friedChickenList');
-	    var id = req.params.id;
-
-	    spot = collection.findById(id, function(err, doc){
-	    	console.log(doc);
-	    	res.json(doc);
+	    ChickenSpot.findById(req.params.id, function (err, spot) {
+	      if (err) {
+	        console.log('GET Error: There was a problem retrieving: ' + err);
+	      } else {
+	        res.json(spot);
+	      }
 	    });
 	});
 
@@ -41,33 +35,35 @@ var ChickenSpot = mongoose.model('ChickenSpot')
 	 * POST to addspot.
 	 */
 	router.post('/addspot', function(req, res) {
-	    var db = req.db;
-	    var collection = db.get('friedChickenList');
-	    collection.insert(req.body, function(err, result){
-	        res.send(
-	            (err === null) ? { msg: '' } : { msg: err }
-	        );
-	    });
+
+		ChickenSpot.create(req.body, function (err, spot) {
+			if (err) {
+			    res.send("There was a problem adding the information to the database.");
+			} else {			    
+			    res.json(spot);
+			}
+		});
 	});
 
 	/*
 	 * PUT to update spot.
 	 */
 	router.put('/updatefriedchicken/:id', function(req, res) {
-		var db = req.db;
-		var collection = db.get('friedChickenList');
-
 		var id = req.params.id;
 	    var whatToUpdateWith = req.body;
 	    delete whatToUpdateWith._id;
 
-	    //how to print to the console
-	    process.stdout.write("-------------THE ID----------------");
-	    process.stdout.write(id);
-	    process.stdout.write("-------------THE ID----------------");
-
-	    collection.updateById(id, whatToUpdateWith, function(err) {
-	        res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
+	    //find the document by ID
+	    ChickenSpot.findById(req.params.id, function (err, spot) {
+	        //update it
+	        spot.update(whatToUpdateWith, function (err, spotID) {
+	          if (err) {
+	            res.send("There was a problem updating the information to the database: " + err);
+	          } 
+	          else {
+	          	res.send('');
+	          }
+	        })
 	    });
 	});
 

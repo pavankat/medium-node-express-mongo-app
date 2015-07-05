@@ -204,6 +204,7 @@ $(document).ready(function() {
                 url: '/chickenspots/updatefriedchicken/' + editFriedChickenId, //editFriedChickenId is a global variable we set in the editUser function
                 dataType: 'JSON'
             }).done(function( response ) {
+                debugger;
                 
                 // Check for successful (blank) response
                 if (response.msg === '') {

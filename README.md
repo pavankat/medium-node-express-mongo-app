@@ -4,6 +4,8 @@ https://scotch.io/tutorials/setting-up-a-mean-stack-single-page-application
 
 http://mongoosejs.com/docs/
 
+https://github.com/kacole2/express-node-mongo-skeleton/blob/master/routes/blobs.js
+
 # This is a MEAN STACK CRUD sample app (mongoDB, Express.js, Angular.js, Node.js)
 * this is a single page fried chicken spot logger app. 
 
