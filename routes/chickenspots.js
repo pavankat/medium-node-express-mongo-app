@@ -71,11 +71,19 @@ var ChickenSpot = mongoose.model('ChickenSpot')
 	 * DELETE to delete the spot.
 	 */
 	router.delete('/deletespot/:id', function(req, res) {
-	    var db = req.db;
-	    var collection = db.get('friedChickenList');
-	    var spotToDelete = req.params.id;
-	    collection.remove({ '_id' : spotToDelete }, function(err) {
-	        res.send((err === null) ? { msg: '' } : { msg:'error: ' + err });
+	    
+	    //find the document by ID
+	    ChickenSpot.findById(req.params.id, function (err, spot) {
+	        //delete it
+	        spot.remove(function (err, spot) {
+	            if (err) {
+	                return console.error(err);
+	            } else {
+	            	res.send('');
+	            }
+	        });
+
+
 	    });
 	});
 

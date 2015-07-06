@@ -1,23 +1,20 @@
-http://stackoverflow.com/questions/7666977/syntax-highlighting-for-jade-in-sublime-text-2
-
-https://scotch.io/tutorials/setting-up-a-mean-stack-single-page-application
-
-http://mongoosejs.com/docs/
-
-https://github.com/kacole2/express-node-mongo-skeleton/blob/master/routes/blobs.js
-
 # This is a MEAN STACK CRUD sample app (mongoDB, Express.js, Angular.js, Node.js)
 * this is a single page fried chicken spot logger app. 
 
-* we're using a MEAN stack, however, if you want to start off with something lighter then	
-	* you can see how to accomplish doing this with a JEMN stack (jQuery, Express.js, mongoDB and Node.js by going to the other branch of this repository)
+* we're using a MEAN stack with Mongoose (connects to mongoDB using Models), however, if you want to start off with something lighter then	
+	* you can see how to accomplish doing this with a JEMN stack with Monk (connects to mongoDB without Models) - jQuery, Express.js, mongoDB and Node.js by going to the other branch of this repository
 
 * We'll be leveraging Angular.js to make our app a single page app.
+
 * Express.js is the framework we'll use to handle routing, handling of parameters and rendering of HTML
+
 * We'll use mongoDB to store data and we'll use mongoose as the ORM (object relational mapper) to mongoDB. Mongoose will make communicating to mongoDB easier for us.
+	- Documentation for Mongoose: http://mongoosejs.com/docs/
+
 * Node.js is the backend programming language we'll be using
 
 * We'll use jade to render the views even though it sucks.
+	- http://stackoverflow.com/questions/7666977/syntax-highlighting-for-jade-in-sublime-text-2
 
 # GOAL
 * this app will help demonstrate REST in the simplest possible way for beginners
@@ -71,10 +68,11 @@ https://github.com/kacole2/express-node-mongo-skeleton/blob/master/routes/blobs.
 
 ### COMMANDS I USED WHEN STARTING THE APP
 
-in a new tab:
-	`mkdir data`
+when starting the app for the first time: 
+	- in a new tab in terminal where your code is located:
+		`mkdir data`
 
-	`mongod --dbpath /Users/pavankatepalli/Desktop/git/medium-node-express-mongo-app/data`
+		`mongod --dbpath /Users/pavankatepalli/Desktop/git/medium-node-express-mongo-app/data`
 
 in a new tab I can make a fried chicken spot initially doing this:
 	`mongo`
