@@ -2,7 +2,7 @@
 * this is a single page fried chicken spot logger app. 
 
 * we're using a MEAN stack with Mongoose (connects to mongoDB using Models), however, if you want to start off with something lighter then	
-	* you can see how to accomplish doing this with a JEMN stack with Monk (connects to mongoDB without Models) - jQuery, Express.js, mongoDB and Node.js by going to the other branch of this repository
+	* you can see how to accomplish doing this with a JEMN stack with Monk (connects to mongoDB without Models) - jQuery, AJAX via jQuery functions $.ajax and $.getJSON, Express.js, mongoDB and Node.js by going to the other branch of this repository
 
 * We'll be leveraging Angular.js to make our app a single page app.
 
