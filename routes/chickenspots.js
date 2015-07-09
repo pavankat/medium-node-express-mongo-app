@@ -40,7 +40,7 @@ var ChickenSpot = mongoose.model('ChickenSpot')
 			if (err) {
 			    res.send("There was a problem adding the information to the database.");
 			} else {			    
-			    res.json(spot);
+			    res.json(JSON.stringify(200));
 			}
 		});
 	});
@@ -58,10 +58,10 @@ var ChickenSpot = mongoose.model('ChickenSpot')
 	        //update it
 	        spot.update(whatToUpdateWith, function (err, spotID) {
 	          if (err) {
-	            res.send("There was a problem updating the information to the database: " + err);
+	            res.send(JSON.stringify("There was a problem updating the information to the database: " + err));
 	          } 
 	          else {
-	          	res.send('');
+	          	res.send(JSON.stringify(200));
 	          }
 	        })
 	    });

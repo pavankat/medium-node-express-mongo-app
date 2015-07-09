@@ -83,8 +83,7 @@ $(document).ready(function() {
                 dataType: 'JSON'
             }).done(function( response ) {
 
-                // Check for successful (blank) response
-                if (response.msg === '') {
+                if (response === 200) {
 
                     // Clear the form inputs
                     $('#addSpot fieldset input').val('');
@@ -92,18 +91,16 @@ $(document).ready(function() {
                     // Update the table
                     populateTable();
 
-                }
-                else {
-
+                }else {
                     // If something goes wrong, alert the error message that our service returned
-                    alert('Error: ' + response.msg);
+                    console.log('Error: ' + response);
 
                 }
             });
         }
         else {
             // If errorCount is more than 0, error out
-            alert('Please fill in all fields');
+            console.log('Please fill in all fields');
             return false;
         }
     };
@@ -129,7 +126,7 @@ $(document).ready(function() {
                 if (response.msg === '') {
                 }
                 else {
-                    alert('Error: ' + response.msg);
+                    console.log('Error: ' + response);
                 }
 
                 // Update the table
@@ -204,10 +201,9 @@ $(document).ready(function() {
                 url: '/chickenspots/updatefriedchicken/' + editFriedChickenId, //editFriedChickenId is a global variable we set in the editUser function
                 dataType: 'JSON'
             }).done(function( response ) {
-                debugger;
                 
                 // Check for successful (blank) response
-                if (response.msg === '') {
+                if (response === 200) {
 
                     // Clear the edit form inputs, hide the edit form and 
                     hideAndClearEditShowAddForm();
@@ -218,14 +214,16 @@ $(document).ready(function() {
                 }else {
 
                     // If something goes wrong, alert the error message that our service returned
-                    alert('Error: ' + response.msg);
+                    console.log('Error: ' + response);
 
                 }
+            }).fail(function( jqXHR, textStatus ) {
+              console.log( "Request failed: " + textStatus );
             });
         }
         else {
             // If errorCount is more than 0, error out
-            alert('Please fill in all fields');
+            console.log('Please fill in all fields');
             return false;
         }
     }
