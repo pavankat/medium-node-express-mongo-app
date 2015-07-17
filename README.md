@@ -93,7 +93,7 @@ in a new tab I can make a fried chicken spot initially doing this:
 	- shows the app
 
 * Debugging
-	* How to use node debug
+	* How to use node-inspector
 
 		* How to install the debugger
 
