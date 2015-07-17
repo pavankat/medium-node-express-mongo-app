@@ -83,15 +83,40 @@ in a new tab
 * http://localhost:3000
 	- shows the app
 
+
 * Debugging
-	* Installing node inspector globally
-		* sudo npm install -g node-inspector
-	* In a new tab, directory, run this in the file directory: node --debug ./bin/www
-	* In a new tab, run this in the file directory: node-inspector
+	* How to use node-inspector
+
+		* How to install the debugger
+
+		 - `sudo npm install -g node-inspector`
+
+		* How to start your debugger (not nodemon anymore)
+
+		 - `node-debug --debug-port 4545 server.js`
+
+		* If a debug window doesn't open automatically for you, copy and paste the url in the teminal output
+
+			* Use as you would a normal chrome browser debugger.
+
+			* If your server fails or if you end your debug session, you can restart the node-inspector to get it to reconnect to your server's debug session
+
+		* it's possible that localhost:<port number you set for your app> won't work. If that's the case, most likely, it's because node-inspector has stopped on the first line. Open up the node-inspector window and hit play. Then go to localhost:<port number you set for your app> in your browser.
+
 
 	* Alternative way of debugging
 		* couldn't get any of this to work in execution
 			* node debug app.js
+
+			* run
+			 or
+			* r
+
+			- when you hit the script in browser then
+				- it'll pause
+				- you use this 
+					* repel
+				- to be able to see what the variables are
 
 			* then use debugger;
 
